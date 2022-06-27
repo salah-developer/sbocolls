@@ -1,0 +1,77 @@
+<style>
+  .p{
+      text-align: center;
+  font-weight: bold;
+  font-size: 4em;
+  margin: 21px;
+         }    
+</style>
+{%   extends 'base.html'   %}
+{% load static %}
+{% block title %}Search Products{% endblock %}
+{%  block content  %}
+
+<div class="heading">
+  <h1>our shop</h1>
+  <p> <a href="{% url 'index' %}">home >></a> shop </p>
+</div>
+
+
+
+<section class="products">
+
+
+  <div class="box-container">
+
+
+
+          {% for pro in products %}
+          <div class="box">
+              <div class="icons">
+                  <a href="#" class="fas fa-shopping-cart"></a>
+                  <a href="#" class="fas fa-heart"></a>
+                  <a href="{% url 'product' pro_id=pro.id %}" class="fas fa-eye"></a>
+              </div>
+          <div style="width: auto;" class="image">
+              <img style="width: auto;" src="{{pro.photo.url}}" alt="">
+          </div>
+
+          <div class="content">
+              <h3>{{pro.name}}</h3>
+              <div class="price">{{pro.price}}</div>
+              <div class="stars">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="far fa-star"></i>
+              </div>
+          </div>
+      </div>
+
+{% empty %}
+<h4 class="alert alert-warning" style="    height: 46px;
+font-size: 21px;">No product here, 
+    <a href="{% url 'shop' %}" style="color: cornflowerblue;" >Go All Products</a>
+
+</h4>
+          {% endfor %}
+
+  </div>
+
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}
